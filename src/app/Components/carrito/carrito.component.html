@@ -1,0 +1,101 @@
+<section class="fill">
+    <div class="container py-5">
+        <nav ngbNav #nav="ngbNav" class="nav-tabs">
+            <ng-container ngbNavItem>
+                <a ngbNavLink>Carrito</a>
+                <ng-template ngbNavContent>
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="card shopping-cart" style="border-radius: 15px;">
+                            <div class="card-body text-black">
+                                <div class="py-2">
+                                    <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Tu carrito</h3>
+                                    <div *ngFor="let p of productos">
+                                        <div class="d-flex align-items-center mb-5">
+                                            <div class="flex-shrink-0">
+                                                <img [src]="p.Img" class="img-fluid" style="width: 150px;"
+                                                    alt="Imagen del producto">
+                                            </div>
+                                            <div class="flex-grow-1 ms-3 ">
+                                                <a href="#!" class="text-black"
+                                                    [ngClass]="width > 470 ? 'float-end' : ''">
+                                                    <i class="fas fa-times"></i>
+                                                </a>
+                                                <h5 class="text-primary text-break">{{ p.Nombre }}</h5>
+                                                <h6 style="color: #9e9e9e;">Color: {{ p.Color }}</h6>
+                                                <div class="d-flex align-items-center">
+                                                    <p class="fw-bold mb-0 pe-3" [ngClass]="width > 470 ? 'me-5' : ''">{{ p.Precio }}$</p>
+                                                    <div class="def-number-input number-input safari_only">
+                                                        <button
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                                            class="minus"></button>
+                                                        <input class="quantity fw-bold text-black" min="0"
+                                                            name="quantity" value="1" type="number">
+                                                        <button
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                                            class="plus"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="mb-4" style="height: 2px; background-color: #1266f1; opacity: 1;">
+                                    <div class="d-flex justify-content-between p-2 mb-2"
+                                        style="background-color: #e1f5fe;">
+                                        <h5 class="fw-bold mb-0">Total:</h5>
+                                        <h5 class="fw-bold mb-0">2261$</h5>
+                                    </div>
+                                    <div class="my-5 d-flex">
+                                        <button type="button"
+                                            class="btn btn-primary btn-block btn-lg bd-highlight">Comprar</button>
+                                        <h5 class="fw-bold ms-auto bd-highlight">
+                                            <a [routerLink]="['../home']">
+                                                <i class="fas fa-angle-left me-2"></i>Seguir Comprando
+                                            </a>
+                                        </h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-container>
+            <ng-container ngbNavItem>
+                <a ngbNavLink>Pedidos Realizados</a>
+                <ng-template ngbNavContent>
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="card shopping-cart" style="border-radius: 15px;">
+                            <div class="card-body text-black">
+                                <div class="py-2">
+                                    <p class="mb-3 pt-2 text-center fw-bold text-uppercase h3">Tus Pedidos Anteriores</p>
+                                    <hr class="mb-4" style="height: 2px; background-color: #1266f1; opacity: 1;">
+                                    <div *ngFor="let ped of pedidos">
+                                        <p class="mb-3 fw-bold text-uppercase h4">{{ ped.date }}</p>
+                                        <div *ngFor="let p of ped.pedidos">
+                                            <div class="d-flex align-items-center mb-5">
+                                                <div class="flex-shrink-0">
+                                                    <img [src]="p.Img" class="img-fluid" style="width: 150px;"
+                                                        alt="Imagen del producto">
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <h5 class="text-primary text-break">{{ p.Nombre }}</h5>
+                                                    <h6 style="color: #9e9e9e;">Color: {{ p.Color }}</h6>
+                                                    <div class="d-flex align-items-center">
+                                                        <p class="fw-bold mb-0 me-5 pe-3">{{ p.Precio }}$</p>
+                                                        <p class="quantity fw-bold text-black mb-0">1</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="mb-4" style="height: 2px; background-color: #1266f1; opacity: 1;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </nav>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+</section>

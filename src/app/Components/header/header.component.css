@@ -1,0 +1,11 @@
+.header-principal {
+    background-color: #010663;
+}
+
+.search-bar {
+    width: 36vw;
+}
+
+::-webkit-input-placeholder, :-moz-placeholder {
+    text-align: center;
+}

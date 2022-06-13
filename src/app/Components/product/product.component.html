@@ -1,0 +1,53 @@
+<section class="fill">
+    <div class="container dark-grey-text"
+        [ngClass]="width > 767 ? 'position-absolute top-50 start-50 translate-middle' : ''">
+        <div class="card">
+            <!--Grid row-->
+            <div class="row align-items-center p-5">
+                <!--Grid column-->
+                <div class="col-md-6">
+                    <img src="https://www.pngplay.com/wp-content/uploads/8/Led-Television-TV-PNG-HD-Quality.png"
+                        class="img-fluid" alt="">
+                </div>
+                <!--Grid column-->
+                <div class="col-md-6">
+                    <!--Content-->
+                    <div class="p-4">
+                        <div class="mb-3">
+                            <p class="h2">Producto Nombre</p>
+                        </div>
+                        <p class="h2">
+                            <span>$100</span>
+                        </p>
+                        <p class="font-weight-bold h3">Caracteristicas</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia
+                            ipsa
+                            sint voluptatibus!
+                            Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.</p>
+                        <p class="font-weight-bold h3">Descripcion</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia
+                            ipsa
+                            sint voluptatibus!
+                            Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.</p>
+                        <div class="d-flex justify-content-left">
+                            <!-- Default input -->
+                            <button class="btn btn-primary btn-md my-0" placement="bottom"
+                            ngbPopover="Se agregado el producto a su carrito" [autoClose]="true">
+                                Añadir al Carrito
+                                <i class="fas fa-shopping-cart ml-1"></i>
+                            </button>
+                            <span class="px-2"></span>
+                            <button class="btn btn-outline-danger btn-md" type="button">
+                                Añadir a la lista de deseados
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!--Content-->
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+    </div>
+</section>

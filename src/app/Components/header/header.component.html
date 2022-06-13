@@ -1,0 +1,42 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark header-principal">
+    <div class="container-fluid">
+      <a class="navbar-brand" [routerLink]="['home']">
+        <img src="../../../assets/ServicellLogoPNG.png" alt="" width="102" height="25"
+          class="d-inline-block align-text-top">
+      </a>
+      <div class="d-flex ms-auto">
+        <input class="form-control search-bar" type="search" placeholder="Busca tus productos favoritos!"
+          aria-label="Search">
+        <div ngbDropdown class="d-inline-block">
+          <button type="button" class="btn btn-light" id="catDropdown" ngbDropdownToggle>Categoria</button>
+          <div ngbDropdownMenu aria-labelledby="catDropdown">
+            <button ngbDropdownItem (click)="changeDropdownCategory('Telefonos')">Telefonos</button>
+            <button ngbDropdownItem (click)="changeDropdownCategory('Tablets')">Tablets</button>
+            <button ngbDropdownItem (click)="changeDropdownCategory('Auriculares')">Auriculares</button>
+            <button ngbDropdownItem (click)="changeDropdownCategory('Cargadores')">Cargadores</button>
+            <button ngbDropdownItem (click)="changeDropdownCategory('Protectores')">Protectores</button>
+          </div>
+        </div>
+        <button class="btn header-principal text-light" [routerLink]="['/search']" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+      <div class="ms-auto">
+        <div class="d-inline" *ngIf="true">
+          <button class="btn header-principal text-light" onclick="this.blur();">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </button>
+          <button class="btn header-principal text-light" [routerLink]="['/cart']" onclick="this.blur();">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </button>
+          <button class="btn header-principal text-light" [routerLink]="['/perfil']" onclick="this.blur();">
+            <i class="fa-solid fa-user"></i>
+          </button>
+        </div>
+        <button class="btn header-principal text-light" [routerLink]="['/login']" role="button"
+          onclick="this.blur();">Iniciar Sesion</button>
+      </div>
+    </div>
+  </nav>
+</header>

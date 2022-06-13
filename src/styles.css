@@ -1,0 +1,13 @@
+.fill {
+    background-color: #f3f3f3;
+    min-height: calc(100vh - 11rem); /*Numero magico*/
+}
+
+.center-image{
+    display: grid;
+    place-items: center;
+}
+
+.icono-grande{
+    font-size: 30px;
+}
