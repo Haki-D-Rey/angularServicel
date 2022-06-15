@@ -1,3 +1,4 @@
+import { registerLocaleData } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -18,7 +19,13 @@ export class AuthService {
   private URL = environment.apiURL;
 
   iniciarSesion(user: any): Observable<any> {
-    return this.http.post<any>(`${this.URL}/iniciarSesion`, user, httpOptions);
+    return this.http.get<any>(`${this.URL}/usuario`, {
+      ...httpOptions,
+      params: user,
+    });
     // <-- Aquí van los dat
+  }
+  registrarUsuario(user: any): Observable<any> {
+    return this.http.post<any>(`${this.URL}/usuario`, user, httpOptions);
   }
 }

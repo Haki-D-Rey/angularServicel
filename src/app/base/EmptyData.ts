@@ -5,8 +5,8 @@ export class EmptyData {
     return {
       idUsuario: 0,
       idRol: 0,
-      username: '',
-      password: '',
+      nombreUsuario: '',
+      contrasenia: '',
       fechaRegistro: new Date(),
       estaActivo: 0,
     };
@@ -33,6 +33,7 @@ export class EmptyData {
       correo: '',
       telefono: '',
       direccion: '',
+      fechaRegistro: new Date().toLocaleString('sv-SE'),
       estaActivo: 0,
     };
   }

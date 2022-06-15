@@ -17,8 +17,8 @@ export class IniciarSesionComponent implements OnInit {
 
   onLogin() {
     const user = {
-      username: this.user.username,
-      password: this.user.password,
+      nombreUsuario: this.user.nombreUsuario,
+      contrasenia: this.user.contrasenia,
     };
     console.log(user);
 

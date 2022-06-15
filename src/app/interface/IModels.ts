@@ -1,8 +1,8 @@
 export interface Usuario {
   idUsuario: number;
   idRol: number;
-  username: string;
-  password: string;
+  nombreUsuario: string;
+  contrasenia: string;
   fechaRegistro: Date;
   fechaModificacion?: Date;
   estaActivo: number;
@@ -27,5 +27,7 @@ export interface Persona {
   correo: string;
   telefono: string;
   direccion: string;
+  fechaRegistro: string;
+  fechaModificacion?: string;
   estaActivo: number;
 }
