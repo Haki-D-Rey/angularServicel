@@ -19,6 +19,16 @@ import { CarritoComponent } from './Components/carrito/carrito.component';
 //Modules
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SidenavComponent } from './admin/Components/sidenav/sidenav.component';
+import { DashboardComponent } from './admin/Components/dashboard/dashboard.component';
+import { ProductsComponent } from './admin/Components/products/products.component';
+import { StatisticsComponent } from './admin/Components/statistics/statistics.component';
+import { CoupenComponent } from './admin/Components/coupen/coupen.component';
+import { PagesComponent } from './admin/Components/pages/pages.component';
+import { MediaComponent } from './admin/Components/media/media.component';
+import { SettingsComponent } from './admin/Components/settings/settings.component';
+import { AdminComponentComponent } from './admin/Components/admin-component/admin-component.component';
+import { BodyAdminComponent } from './admin/Components/bodyAdmin/bodyAdmin.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +43,16 @@ import { HttpClientModule } from '@angular/common/http';
     ProductComponent,
     BusquedaComponent,
     CarritoComponent,
+    SidenavComponent,
+    DashboardComponent,
+    ProductsComponent,
+    StatisticsComponent,
+    CoupenComponent,
+    PagesComponent,
+    MediaComponent,
+    SettingsComponent,
+    AdminComponentComponent,
+    BodyAdminComponent,
   ],
   imports: [
     BrowserModule,

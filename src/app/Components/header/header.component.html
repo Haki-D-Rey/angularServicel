@@ -24,7 +24,7 @@
       </div>
       <div class="ms-auto">
         <div class="d-inline" *ngIf="true">
-          <button class="btn header-principal text-light" onclick="this.blur();">
+          <button class="btn header-principal text-light" [routerLink]="['/admin']" onclick="this.blur();">
             <i class="fa-solid fa-screwdriver-wrench"></i>
           </button>
           <button class="btn header-principal text-light" [routerLink]="['/cart']" onclick="this.blur();">
