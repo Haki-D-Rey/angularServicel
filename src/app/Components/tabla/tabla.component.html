@@ -31,7 +31,6 @@
     </thead>
     <tbody>
       <tr *ngFor="let tab of table$ | async">
-        <th scope="row"></th>
         <td *ngFor="let b of body">
           <ngb-highlight
             [result]="tab[b.value]"
