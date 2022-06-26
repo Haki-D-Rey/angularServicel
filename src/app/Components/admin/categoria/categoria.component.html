@@ -1,0 +1,16 @@
+<div class="container-md">
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button
+      type="button"
+      class="btn btn-success"
+      (click)="mostrarPopUp()"
+      style="margin-top: 2em"
+    >
+      Agregar Categoria
+    </button>
+  </div>
+
+  <div>
+    <app-tabla [Headers]="col" [body]="body"></app-tabla>
+  </div>
+</div>

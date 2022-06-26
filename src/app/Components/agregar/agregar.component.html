@@ -1,0 +1,43 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ name }}</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+
+<div class="modal-body">
+  <form #addForm="ngForm" class="row g-3">
+    <ng-container *ngFor="let model of models">
+      <div class="col-md-{{ model.colSpace }}">
+        <label class="form-label">{{ model.label }}</label>
+        <input
+          type="{{ model.type }}"
+          class="form-control"
+          id="{{ model.id }}"
+          name="{{ model.id }}"
+          ngModel
+          required
+        />
+      </div>
+    </ng-container>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    class="btn btn-primary"
+    (click)="passBack(addForm.value)"
+    type="submit"
+  >
+    Agregar
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-dark"
+    (click)="activeModal.close('Close click')"
+  >
+    Close
+  </button>
+</div>

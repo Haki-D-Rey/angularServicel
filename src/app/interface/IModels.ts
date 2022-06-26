@@ -31,3 +31,28 @@ export interface Persona {
   fechaModificacion?: string;
   estaActivo: number;
 }
+
+export interface SidenavToggle {
+  collapsed: boolean;
+  screenWidth: number;
+}
+
+export interface IAgregar {
+  for: string;
+  type: string;
+  id: string;
+  value: string;
+  colSpace: string;
+  label: string;
+}
+
+export interface ICol {
+  header: string;
+  value: string;
+  sortable?: string;
+}
+
+export interface IBody {
+  key: string;
+  value: string;
+}
