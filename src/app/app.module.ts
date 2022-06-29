@@ -20,8 +20,10 @@ import { BusquedaComponent } from './Components/busqueda/busqueda.component';
 import { CarritoComponent } from './Components/carrito/carrito.component';
 //Modules
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AgregarComponent } from './Components/agregar/agregar.component';
+import { TokenInterceptorInterceptor } from './helpers/token-interceptor.interceptor';
+import { ErrorHttpInterceptorInterceptor } from './helpers/error-http-interceptor.interceptor';
 
 @NgModule({
   imports: [
@@ -45,7 +47,9 @@ import { AgregarComponent } from './Components/agregar/agregar.component';
     CarritoComponent,
     AgregarComponent,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: ErrorHttpInterceptorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

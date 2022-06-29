@@ -56,3 +56,8 @@ export interface IBody {
   key: string;
   value: string;
 }
+
+export interface ITokens {
+  jwt: string;
+  refreshToken: string;
+}
