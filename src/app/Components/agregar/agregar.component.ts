@@ -11,14 +11,23 @@ export class AgregarComponent implements OnInit {
   @Input() name = '';
   @Input() models: IAgregar[] = [];
   @Output() response: EventEmitter<any> = new EventEmitter();
-  model: any;
+  currentSelection: string = 'Seleccione';
 
   constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {}
 
+  getSelectId(id: number, obj: any, prop: string, model: any) {
+    obj[prop] = "" + id;
+    this.currentSelection = model.dataSet.find((e: any) => e.id == id).nombre;
+  }
+
+  get getCurrentSelection() {
+    return this.currentSelection;
+  }
+
   passBack(res: any) {
-    res.fechaRegistro = new Date().toLocaleString('sv-SE');
+    res.fechaCreacion = new Date().toLocaleString('sv-SE');
     this.response.emit(res);
     this.activeModal.close('Close click');
   }

@@ -1,7 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Usuario } from '../../interface/IModels';
 import { EmptyData } from 'src/app/base/EmptyData';
 import { AuthService } from 'src/app/Services/auth/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -10,10 +12,22 @@ import { AuthService } from 'src/app/Services/auth/auth.service';
 })
 export class IniciarSesionComponent implements OnInit {
   user: Usuario = new EmptyData().EUsuario();
+  returnUrl: string = '';
+  error: string = '';
+  @Input() visible: any;
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    if (this.authService.userValue) {
+      this.router.navigate(['/login']);
+    }
+  }
 
-  constructor(public authService: AuthService) {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
 
   onLogin() {
     const user = {
@@ -21,12 +35,17 @@ export class IniciarSesionComponent implements OnInit {
       contrasenia: this.user.contrasenia,
     };
     console.log(user);
-
-    this.authService.iniciarSesion(user).subscribe((data: any) => {
-      console.log(
-        'Se ha iniciado sesion con exito, el Token generado es= ' + data.TOKEN
+    this.authService
+      .iniciarSesion(user)
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          this.router.navigate([this.returnUrl]);
+          localStorage.setItem('Token', data.TOKEN);
+        },
+        (error) => {
+          this.error = error;
+        }
       );
-      localStorage.setItem('Token', data.TOKEN);
-    });
   }
 }

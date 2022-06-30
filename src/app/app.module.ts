@@ -12,9 +12,7 @@ import { CrearCuentaComponent } from './Components/crear-cuenta/crear-cuenta.com
 import { OlvidoContrasenaComponent } from './Components/olvido-contrasena/olvido-contrasena.component';
 import { PerfilComponent } from './Components/perfil/perfil.component';
 //Ng-Bootstrap
-import {
-  NgbModule,
-} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductComponent } from './Components/product/product.component';
 import { BusquedaComponent } from './Components/busqueda/busqueda.component';
 import { CarritoComponent } from './Components/carrito/carrito.component';
@@ -22,8 +20,8 @@ import { CarritoComponent } from './Components/carrito/carrito.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AgregarComponent } from './Components/agregar/agregar.component';
-import { TokenInterceptorInterceptor } from './helpers/token-interceptor.interceptor';
-import { ErrorHttpInterceptorInterceptor } from './helpers/error-http-interceptor.interceptor';
+import { TokenInterceptorInterceptor } from './Helpers/token-interceptor.interceptor';
+import { ErrorHttpInterceptorInterceptor } from './Helpers/error-http-interceptor.interceptor';
 
 @NgModule({
   imports: [
@@ -47,9 +45,18 @@ import { ErrorHttpInterceptorInterceptor } from './helpers/error-http-intercepto
     CarritoComponent,
     AgregarComponent,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true },
-  { provide: HTTP_INTERCEPTORS, useClass: ErrorHttpInterceptorInterceptor, multi: true }
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHttpInterceptorInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

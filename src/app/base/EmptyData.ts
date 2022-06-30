@@ -1,3 +1,4 @@
+import { Categoria, Producto } from '../interface/IModels';
 import { Persona, Rol, Usuario } from '../interface/IModels';
 
 export class EmptyData {
@@ -35,6 +36,28 @@ export class EmptyData {
       direccion: '',
       fechaRegistro: new Date().toLocaleString('sv-SE'),
       estaActivo: 0,
+    };
+  }
+
+  public ECategoria(): Categoria {
+    return {
+      idCategoria: 0,
+      nombreCategoria: '',
+      descripcion: '',
+      fechaRegistro: '',
+    };
+  }
+
+  public EProducto(): Producto {
+    return {
+      idProducto: 0,
+      nombreProducto: '',
+      precio: 0,
+      existencia: 0,
+      fechaCreacion: '',
+      fechaModificacion: '',
+      descuento: 0,
+      estaActivo: 1,
     };
   }
 }

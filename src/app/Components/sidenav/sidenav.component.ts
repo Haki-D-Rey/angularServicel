@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/Services/auth/auth.service';
 import { navbarData } from './navData';
-
-
 
 @Component({
   selector: 'app-sidenav',
@@ -12,10 +12,17 @@ export class SidenavComponent implements OnInit {
   @Output() onToggleSidenav: EventEmitter<any> = new EventEmitter();
   collapsed = false;
   screenWidth = 0;
+  returnUrl: string = '';
   navData = navbarData;
-  constructor() {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
 
   toggleCollapse(): void {
     this.collapsed = !this.collapsed;
@@ -31,5 +38,9 @@ export class SidenavComponent implements OnInit {
       collapsed: this.collapsed,
       screenWidth: this.screenWidth,
     });
+  }
+  onLoggout() {
+    this.authService.removeTokens();
+    this.router.navigate([this.returnUrl]);
   }
 }

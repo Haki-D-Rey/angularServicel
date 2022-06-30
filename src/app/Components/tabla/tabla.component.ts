@@ -1,51 +1,42 @@
 import { DecimalPipe } from '@angular/common';
-import {
-  Component,
-  QueryList,
-  ViewChildren,
-  OnInit,
-  Input,
-} from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input } from '@angular/core';
 import { IBody, ICol } from 'src/app/interface/IModels';
-import { Categoria } from '../admin/categoria/categoria.component';
-import { NgbdSortableHeader, SortEvent } from './table.directive';
-import { tablaService } from './table.service';
 
 @Component({
   selector: 'app-tabla',
   templateUrl: './tabla.component.html',
   styleUrls: ['./tabla.component.css'],
-  providers: [tablaService, DecimalPipe],
+  providers: [DecimalPipe],
 })
 export class TablaComponent implements OnInit {
-  table$: Observable<any>;
-  total$: Observable<number>;
   @Input() Headers: ICol[] = [];
   @Input() body: IBody[] = [];
+  @Input() models: any[] = [];
+  page = 1;
+  pageSize = 4;
+  collectionSize = 0;
+  datos: any[] = [];
 
-  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader> =
-    new QueryList();
+  constructor() {}
 
-  constructor(public service: tablaService) {
-    this.table$ = service.table$;
-    this.total$ = service.total$;
+  get currentModels() {
+    this.collectionSize = this.models.length;
+    return this.pagination();
   }
 
   ngOnInit(): void {
-    console.log(this.body);
-    console.log(this.Headers);
+    console.log(this.models);
+    this.datos = this.models;
+    this.pagination();
   }
 
-  onSort({ column, direction }: any) {
-    // resetting other headers
-    this.headers.forEach((header) => {
-      if (header.sortable !== column) {
-        header.direction = '';
-      }
-    });
-
-    this.service.sortColumn = column;
-    this.service.sortDirection = direction;
+  pagination() {
+    if(this.pageSize ==  -1) return this.models;
+    return this.models
+    .map((tab, i) => ({ id: i + 1, ...tab }))
+    .slice(
+      (this.page - 1) * this.pageSize,
+      (this.page - 1) * this.pageSize + this.pageSize
+    );
   }
 }

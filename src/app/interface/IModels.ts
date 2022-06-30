@@ -1,3 +1,4 @@
+
 export interface Usuario {
   idUsuario: number;
   idRol: number;
@@ -44,6 +45,7 @@ export interface IAgregar {
   value: string;
   colSpace: string;
   label: string;
+  dataSet?: Array<any>;
 }
 
 export interface ICol {
@@ -55,9 +57,29 @@ export interface ICol {
 export interface IBody {
   key: string;
   value: string;
+  type?: string;
 }
 
 export interface ITokens {
   jwt: string;
   refreshToken: string;
 }
+
+export interface Categoria {
+  idCategoria: number;
+  nombreCategoria: string;
+  descripcion: string;
+  fechaRegistro: string;
+}
+
+export interface Producto {
+  idProducto: number;
+  nombreProducto: string;
+  precio: number;
+  existencia: number;
+  fechaCreacion: string;
+  fechaModificacion?: string;
+  descuento: number;
+  estaActivo: number;
+} 
+

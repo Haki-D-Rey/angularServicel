@@ -11,7 +11,10 @@
 <div class="modal-body">
   <form #addForm="ngForm" class="row g-3">
     <ng-container *ngFor="let model of models">
-      <div class="col-md-{{ model.colSpace }}">
+      <div
+        class="col-md-{{ model.colSpace }}"
+        *ngIf="model.type != 'Dropdown'; else Dropdown"
+      >
         <label class="form-label">{{ model.label }}</label>
         <input
           type="{{ model.type }}"
@@ -22,6 +25,31 @@
           required
         />
       </div>
+      <ng-template #Dropdown>
+        <div
+          ngbDropdown
+          style="padding-top: 2em"
+          class="col-md-{{ model.colSpace }}"
+        >
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            id="dropdownBasic1"
+            ngbDropdownToggle
+          >
+            {{ getCurrentSelection }}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button
+              (click)="getSelectId(data.id, addForm.value, model.id, model)"
+              *ngFor="let data of model.dataSet"
+              ngbDropdownItem
+            >
+              {{ data.nombre }}
+            </button>
+          </div>
+        </div>
+      </ng-template>
     </ng-container>
   </form>
 </div>

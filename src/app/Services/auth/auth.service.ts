@@ -16,11 +16,12 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly JWT_TOKEN = 'JWT_TOKEN';
-  private userSubject: BehaviorSubject<Usuario> = new BehaviorSubject(new EmptyData().EUsuario());
+  private readonly Token = 'Token';
+  private userSubject: BehaviorSubject<Usuario> = new BehaviorSubject(
+    new EmptyData().EUsuario()
+  );
   public user = this.userSubject.asObservable();
-  constructor(private http: HttpClient, private router: Router) {
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   private URL = environment.apiURL;
 
@@ -39,30 +40,25 @@ export class AuthService {
     return this.http.post<any>(`${this.URL}/usuario`, user, httpOptions);
   }
 
-
   logout() {
     // remove user from local storage to log user out
     this.removeTokens();
     this.userSubject.next(null || new EmptyData().EUsuario());
     this.router.navigate(['/login']);
-}
-
-
+  }
 
   getJwtToken(): string {
-    return localStorage.getItem(this.JWT_TOKEN) || '';
+    return localStorage.getItem(this.Token) || '';
   }
 
-
-  private setJwtToken(jwt: string) {
-    localStorage.setItem(this.JWT_TOKEN, jwt);
+  public setJwtToken(jwt: string) {
+    localStorage.setItem(this.Token, jwt);
   }
 
-  private removeTokens() {
-    localStorage.removeItem(this.JWT_TOKEN)
+  public removeTokens() {
+    localStorage.removeItem(this.Token);
   }
-
 }
- //https://dev-academy.com/angular-jwt/
- //https://dev-academy.com/angular-architecture-best-practices/
- //https://jasonwatmore.com/post/2020/10/17/angular-10-basic-http-authentication-tutorial-example
+//https://dev-academy.com/angular-jwt/
+//https://dev-academy.com/angular-architecture-best-practices/
+//https://jasonwatmore.com/post/2020/10/17/angular-10-basic-http-authentication-tutorial-example

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { IBody, ICol } from 'src/app/interface/IModels';
+import { EmptyData } from 'src/app/base/EmptyData';
+import { Categoria, IBody, ICol } from 'src/app/interface/IModels';
 import { AgregarComponent } from '../../agregar/agregar.component';
+import { CategoriaService } from './categoria.service';
 
 @Component({
   selector: 'app-categoria',
@@ -11,13 +13,17 @@ import { AgregarComponent } from '../../agregar/agregar.component';
 export class CategoriaComponent implements OnInit {
   col: ICol[] = [];
   body: IBody[] = [];
-  constructor(private modalService: NgbModal) {}
+  categoria: Categoria[] = [];
+  constructor(
+    private modalService: NgbModal,
+    private service: CategoriaService
+  ) {}
 
   ngOnInit(): void {
     this.col = [
       {
         header: '#',
-        value: 'idCategoria',
+        value: '',
       },
       {
         header: 'Nombre Categoria',
@@ -29,14 +35,14 @@ export class CategoriaComponent implements OnInit {
       },
       {
         header: 'Fecha Registro',
-        value: 'fechaRegistro',
+        value: 'fechacreacion',
       },
     ];
 
     this.body = [
       {
-        key: 'idCategoria',
-        value: 'idCategoria',
+        key: 'index',
+        value: 'index',
       },
       {
         key: 'Nombre Categoria',
@@ -48,9 +54,14 @@ export class CategoriaComponent implements OnInit {
       },
       {
         key: 'Fecha Registro',
-        value: 'fechaRegistro',
+        value: 'fechacreacion',
+        type: 'date',
       },
     ];
+
+    this.service.obtenerCategorias().subscribe((e) => {
+      this.categoria = e;
+    });
   }
 
   mostrarPopUp() {
@@ -67,58 +78,21 @@ export class CategoriaComponent implements OnInit {
         label: 'Nombre',
       },
       {
-        id: 'descripcionCategoria',
+        id: 'descripcion',
         for: '',
         type: 'text',
-        value: 'descripcionCategoria',
+        value: 'descripcion',
         colSpace: '6',
         label: 'Descripcion',
       },
     ];
 
     modalRef.response.subscribe((res: any) => {
-      console.log(modalRef.name);
-      console.log(res);
+      this.service.guardarCategoria(res).subscribe((saved) => {
+        if (saved) {
+          this.categoria.push(res);
+        }
+      });
     });
   }
 }
-
-export interface Categoria {
-  idCategoria: number;
-  nombreCategoria: string;
-  descripcion: string;
-  fechaRegistro: string;
-}
-
-export const CATEGORTIES: Categoria[] = [
-  {
-    idCategoria: 1,
-    nombreCategoria: 'Deportes',
-    descripcion: 'Seccion de Deportes',
-    fechaRegistro: '02/06/2022 10:43:00',
-  },
-  {
-    idCategoria: 2,
-    nombreCategoria: 'Ficcion',
-    descripcion: 'Seccion de Ficcion',
-    fechaRegistro: '02/06/2022 10:43:00',
-  },
-  {
-    idCategoria: 3,
-    nombreCategoria: 'Deportes',
-    descripcion: 'Seccion de Deportes',
-    fechaRegistro: '02/06/2022 10:43:00',
-  },
-  {
-    idCategoria: 4,
-    nombreCategoria: 'Deportes',
-    descripcion: 'Seccion de Ficcion',
-    fechaRegistro: '02/06/2022 10:43:00',
-  },
-  {
-    idCategoria: 5,
-    nombreCategoria: 'Deportes',
-    descripcion: 'Seccion de Ficcion',
-    fechaRegistro: '02/06/2022 10:43:00',
-  },
-];

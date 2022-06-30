@@ -9,6 +9,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductoComponent } from './producto/producto.component';
 import { TablaComponent } from '../tabla/tabla.component';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +19,9 @@ import { FormsModule } from '@angular/forms';
     SidenavComponent,
     ProductoComponent,
     TablaComponent,
+    UsuarioComponent,
   ],
-  imports: [CommonModule, AdminRoutingModule, NgbModule, FormsModule],
+  imports: [CommonModule, AdminRoutingModule, NgbModule, FormsModule,ReactiveFormsModule],
   providers: [],
 })
 export class AdminModule {}
