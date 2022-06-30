@@ -20,8 +20,8 @@ import { CarritoComponent } from './Components/carrito/carrito.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AgregarComponent } from './Components/agregar/agregar.component';
-import { TokenInterceptorInterceptor } from './Helpers/token-interceptor.interceptor';
-import { ErrorHttpInterceptorInterceptor } from './Helpers/error-http-interceptor.interceptor';
+import { TokenInterceptor } from './Helpers/token.interceptor';
+import { ErrorHttpInterceptor } from './Helpers/error-http.interceptor';
 
 @NgModule({
   imports: [
@@ -48,12 +48,12 @@ import { ErrorHttpInterceptorInterceptor } from './Helpers/error-http-intercepto
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorInterceptor,
+      useClass: TokenInterceptor,
       multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ErrorHttpInterceptorInterceptor,
+      useClass: ErrorHttpInterceptor,
       multi: true,
     },
   ],

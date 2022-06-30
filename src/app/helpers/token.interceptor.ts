@@ -10,7 +10,7 @@ import { AuthService } from '../Services/auth/auth.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
-export class TokenInterceptorInterceptor implements HttpInterceptor {
+export class TokenInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
   intercept(
